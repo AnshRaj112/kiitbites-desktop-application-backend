@@ -4,11 +4,10 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const foodRoutes = require("./routes/foodRoutes");
 const contactRoute = require("./routes/contactRoute");
-const connectDB = require("./config/db");
 const teamRoutes = require("./routes/teamRoutes");
 
 const app = express();
-connectDB();
+
 
 app.use(express.json());  // ✅ Parses incoming JSON data
 app.use(express.urlencoded({ extended: true }));  // ✅ Parses form data
@@ -33,10 +32,6 @@ app.use(
 
 
 // ✅ Ensure MONGO_URL exists
-if (!MONGO_URL) {
-  console.error("❌ MONGO_URL is missing in .env file");
-  process.exit(1);
-}
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
